@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Galaxy S20+",
+    "chipset": "Snapdragon 865",
+    "ram": 12,
+    "memory": 128,
+    "mainCamera": 12,
+    "frontCamera": 10,
+    "Battery": 4500
+  },
+  {
+    "name": "Find X2 Pro",
+    "chipset": "Snapdragon 865",
+    "ram": 12,
+    "memory": 256,
+    "mainCamera": 48,
+    "frontCamera": 32,
+    "Battery": 4260
+  },
+  {
+    "name": "OnePlus 8 Pro",
+    "chipset": "Snapdragon 865",
+    "ram": 12,
+    "memory": 256,
+    "mainCamera": 48,
+    "frontCamera": 16,
+    "Battery": 4510
+  },
+  {
+    "name": "Motorola Edge",
+    "chipset": "Snapdragon 765G",
+    "ram": 6,
+    "memory": 128,
+    "mainCamera": 64,
+    "frontCamera": 25,
+    "Battery": 4500
+  },
+  {
+    "name": "Huawei P30 Pro",
+    "chipset": "Kirin 980",
+    "ram": 8,
+    "memory": 128,
+    "mainCamera": 40,
+    "frontCamera": 32,
+    "Battery": 4200
+  }
+]
