@@ -38,7 +38,7 @@ Spec.init(
     memory: DataTypes.INTEGER,
     mainCamera: DataTypes.INTEGER,
     frontCamera: DataTypes.INTEGER,
-    Battery: DataTypes.INTEGER,
+    battery: DataTypes.INTEGER,
   },
   { sequelize, modelName: 'Spec', timestamps: false }
 );

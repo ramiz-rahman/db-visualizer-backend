@@ -75,7 +75,72 @@ app.get('/spec/:specId', async (req, res) => {
 
 // Joins
 app.get('/innerjoin', async (req, res) => {
-  const query = `SELECT * FROM "Phones" INNER JOIN "Specs" ON "Phones"."name" = "Specs"."name"`;
+  const query = `SELECT
+      "Phones"."id" AS "Phone ID", "Specs"."id" AS "Spec ID",
+      "Phones"."name", "company", "resolution", "size",
+      "os", "chipset", "ram", "memory", "mainCamera",
+      "frontCamera", "battery"
+    FROM "Phones"
+    INNER JOIN "Specs"
+    ON "Phones"."name" = "Specs"."name"`;
+
+  try {
+    const [results, metadata] = await sequelize.query(query);
+    res.json({ results });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+app.get('/leftouterjoin', async (req, res) => {
+  const query = `SELECT
+      "Phones"."id" AS "Phone ID", "Specs"."id" AS "Spec ID",
+      "Phones"."name" AS "Name (A)", "Specs"."name" AS "Name (B)",
+      "company", "resolution", "size", "os", "chipset",
+      "ram", "memory", "mainCamera" AS "Main Camera", 
+      "frontCamera" AS "Front Camera", "battery" 
+    FROM "Phones"
+    LEFT OUTER JOIN "Specs"
+    ON "Phones"."name" = "Specs"."name"`;
+
+  try {
+    const [results, metadata] = await sequelize.query(query);
+    res.json({ results });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+app.get('/rightouterjoin', async (req, res) => {
+  const query = `SELECT
+      "Phones"."id" AS "Phone ID", "Specs"."id" AS "Spec ID",
+      "Phones"."name" AS "Name (A)", "Specs"."name" AS "Name (B)",
+      "company", "resolution", "size", "os", "chipset",
+      "ram", "memory", "mainCamera" AS "Main Camera", 
+      "frontCamera" AS "Front Camera", "battery" 
+    FROM "Phones"
+    RIGHT OUTER JOIN "Specs"
+    ON "Phones"."name" = "Specs"."name"`;
+
+  try {
+    const [results, metadata] = await sequelize.query(query);
+    res.json({ results });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+app.get('/fulljoin', async (req, res) => {
+  const query = `SELECT
+      "Phones"."id" AS "Phone ID", "Specs"."id" AS "Spec ID",
+      "Phones"."name" AS "Name (A)", "Specs"."name" AS "Name (B)",
+      "company", "resolution", "size", "os", "chipset",
+      "ram", "memory", "mainCamera" AS "Main Camera", 
+      "frontCamera" AS "Front Camera", "battery" 
+    FROM "Phones"
+    FULL JOIN "Specs"
+    ON "Phones"."name" = "Specs"."name"`;
+
   try {
     const [results, metadata] = await sequelize.query(query);
     res.json({ results });
