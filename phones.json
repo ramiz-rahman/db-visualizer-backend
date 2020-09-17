@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Galaxy S20+",
+    "company": "Samsung",
+    "resolution": "1440x3200 pixels",
+    "size": 6.7,
+    "os": "Android"
+  },
+  {
+    "name": "iPhone 11 Pro Max",
+    "company": "Apple",
+    "resolution": "1242x2688 pixels",
+    "size": 6.5,
+    "os": "iOS"
+  },
+  {
+    "name": "Mi 10 Pro 5G",
+    "company": "Xiaomi",
+    "resolution": "1080x2340 pixels",
+    "size": 6.67,
+    "os": "Android"
+  },
+  {
+    "name": "Find X2 Pro",
+    "company": "Oppo",
+    "resolution": "1440x3168 pixels",
+    "size": 6.7,
+    "os": "Android"
+  },
+  {
+    "name": "OnePlus 8 Pro",
+    "company": "OnePlus",
+    "resolution": "1440x3168 pixels",
+    "size": 6.78,
+    "os": "Android"
+  }
+]
