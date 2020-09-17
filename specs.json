@@ -6,7 +6,7 @@
     "memory": 128,
     "mainCamera": 12,
     "frontCamera": 10,
-    "Battery": 4500
+    "battery": 4500
   },
   {
     "name": "Find X2 Pro",
@@ -15,7 +15,7 @@
     "memory": 256,
     "mainCamera": 48,
     "frontCamera": 32,
-    "Battery": 4260
+    "battery": 4260
   },
   {
     "name": "OnePlus 8 Pro",
@@ -24,7 +24,7 @@
     "memory": 256,
     "mainCamera": 48,
     "frontCamera": 16,
-    "Battery": 4510
+    "battery": 4510
   },
   {
     "name": "Motorola Edge",
@@ -33,7 +33,7 @@
     "memory": 128,
     "mainCamera": 64,
     "frontCamera": 25,
-    "Battery": 4500
+    "battery": 4500
   },
   {
     "name": "Huawei P30 Pro",
@@ -42,6 +42,6 @@
     "memory": 128,
     "mainCamera": 40,
     "frontCamera": 32,
-    "Battery": 4200
+    "battery": 4200
   }
 ]
