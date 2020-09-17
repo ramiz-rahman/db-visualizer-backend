@@ -73,3 +73,4 @@ initializeSpec();
 
 exports.Phone = Phone;
 exports.Spec = Spec;
+exports.sequelize = sequelize;

@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
-const { Phone, Spec } = require('./models');
+const { Phone, Spec, sequelize } = require('./models');
 
 const app = express();
 const port = 3000;
@@ -68,6 +68,17 @@ app.get('/spec/:specId', async (req, res) => {
       },
     });
     res.json({ spec });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+// Joins
+app.get('/innerjoin', async (req, res) => {
+  const query = `SELECT * FROM "Phones" INNER JOIN "Specs" ON "Phones"."name" = "Specs"."name"`;
+  try {
+    const [results, metadata] = await sequelize.query(query);
+    res.json({ results });
   } catch (error) {
     console.error(error);
   }
