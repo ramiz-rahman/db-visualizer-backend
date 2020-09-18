@@ -73,13 +73,30 @@ app.get('/spec/:specId', async (req, res) => {
   }
 });
 
+// Sets
+app.get('/union', async (req, res) => {
+  const query = `SELECT "name" 
+      FROM "Phones"
+      UNION 
+      SELECT "name" 
+      FROM "Specs"`;
+
+  try {
+    const [results, metadata] = await sequelize.query(query);
+    res.json({ results });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 // Joins
 app.get('/innerjoin', async (req, res) => {
   const query = `SELECT
       "Phones"."id" AS "Phone ID", "Specs"."id" AS "Spec ID",
       "Phones"."name", "company", "resolution", "size",
-      "os", "chipset", "ram", "memory", "mainCamera",
-      "frontCamera", "battery"
+      "os", "chipset","ram", "memory",
+      "mainCamera" AS "Main Camera", 
+      "frontCamera" AS "Front Camera", "battery" 
     FROM "Phones"
     INNER JOIN "Specs"
     ON "Phones"."name" = "Specs"."name"`;
