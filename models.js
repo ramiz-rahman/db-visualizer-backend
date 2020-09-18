@@ -59,8 +59,6 @@ const initializePhone = async () => {
   }
 };
 
-initializePhone();
-
 const initializeSpec = async () => {
   await Spec.sync({ force: true });
   console.log('The table for the Spec model was just (re)created!');
@@ -69,7 +67,46 @@ const initializeSpec = async () => {
   }
 };
 
-initializeSpec();
+// Enable the Trigger
+const enableTrigger = async () => {
+  const dropFunc = `
+    DROP FUNCTION IF EXISTS add_phone_to_spec;
+  `;
+  const dropTrigger = `
+    DROP TRIGGER IF EXISTS "phone_to_spec" ON "Phones";
+  `;
+  const createFunc = `
+  CREATE FUNCTION add_phone_to_spec() 
+  RETURNS TRIGGER 
+  LANGUAGE PLPGSQL 
+  AS $$
+  BEGIN
+      INSERT INTO "Specs"("name")
+      VALUES(NEW."name");
+
+      RETURN NEW;
+  END;
+  $$
+  `;
+  const createTrigger = `
+    CREATE  TRIGGER  "phone_to_spec"
+    AFTER INSERT
+    ON "Phones"
+    FOR EACH ROW
+      EXECUTE PROCEDURE add_phone_to_spec();
+  `;
+
+  try {
+    await sequelize.query(dropFunc);
+    await sequelize.query(dropTrigger);
+    await sequelize.query(createFunc);
+    await sequelize.query(createTrigger);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+initializePhone().then(initializeSpec).then(enableTrigger);
 
 exports.Phone = Phone;
 exports.Spec = Spec;

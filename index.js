@@ -210,35 +210,3 @@ app.get('/fulljoin', async (req, res) => {
     console.error(error);
   }
 });
-
-// Triggers
-app.post('/trigger', async (req, res) => {
-  const queryFunc = `
-  CREATE FUNCTION add_phone_to_spec() 
-  RETURNS TRIGGER 
-  LANGUAGE PLPGSQL 
-  AS $$
-  BEGIN
-      INSERT INTO "Specs"("name")
-      VALUES(NEW."name");
-
-      RETURN NEW;
-  END;
-  $$
-  `;
-  const queryTrigger = `
-    CREATE  TRIGGER  "phone_to_spec"
-    AFTER INSERT
-    ON "Phones"
-    FOR EACH ROW
-      EXECUTE PROCEDURE add_phone_to_spec();
-  `;
-
-  try {
-    const [result_1, metadata_1] = await sequelize.query(queryFunc);
-    const [result_2, metadata_2] = await sequelize.query(queryTrigger);
-    res.json({ result_1, result_2 });
-  } catch (error) {
-    console.error(error);
-  }
-});
