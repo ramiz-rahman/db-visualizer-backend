@@ -104,6 +104,21 @@ app.get('/intersection', async (req, res) => {
   }
 });
 
+app.get('/difference', async (req, res) => {
+  const query = `SELECT "name" 
+      FROM "Phones"
+      EXCEPT
+      SELECT "name" 
+      FROM "Specs"`;
+
+  try {
+    const [results, metadata] = await sequelize.query(query);
+    res.json({ results });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 // Joins
 app.get('/innerjoin', async (req, res) => {
   const query = `SELECT
