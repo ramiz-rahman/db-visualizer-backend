@@ -119,6 +119,21 @@ app.get('/difference', async (req, res) => {
   }
 });
 
+app.get('/crossjoin', async (req, res) => {
+  const query = `SELECT 
+        "Phones"."name" AS "Name (A)",
+        "Specs"."name" AS "Name (B)"
+      FROM "Phones"
+      CROSS JOIN "Specs"`;
+
+  try {
+    const [results, metadata] = await sequelize.query(query);
+    res.json({ results });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 // Joins
 app.get('/innerjoin', async (req, res) => {
   const query = `SELECT
