@@ -4,8 +4,12 @@ const { Sequelize, Model, DataTypes } = require('sequelize');
 const fs = require('fs');
 
 // Connect to the Postgre Databases
-const db = `postgres://ramiz:1234@localhost:5432/dbv`;
-const sequelize = new Sequelize(db);
+const user = process.env.USER || 'ramiz';
+const pass = process.env.PASSWORD || '1234';
+const host = process.env.HOST || 'localhost:5432';
+const db = process.env.DB || 'dbv';
+const conn = `postgres://${user}:${pass}@${host}/${db}`;
+const sequelize = new Sequelize(conn);
 
 sequelize
   .authenticate()
