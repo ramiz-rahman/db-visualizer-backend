@@ -8,7 +8,9 @@ const user = process.env.USER || 'ramiz';
 const pass = process.env.PASSWORD || '1234';
 const host = process.env.HOST || 'localhost:5432';
 const db = process.env.DB || 'dbv';
-const conn = `postgres://${user}:${pass}@${host}/${db}`;
+const conn =
+  process.env.DATABASE_URL ||
+  `postgres://${user}:${pass}@${host}/${db}`;
 const sequelize = new Sequelize(conn);
 
 sequelize
